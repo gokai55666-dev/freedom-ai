@@ -1,3 +1,9 @@
+# Copy requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt && apt-get purge -y --auto-remove gcc
+
+# Pre-download Hugging Face model to cache
+RUN python -c "from transformers import pipeline; pipeline('text-classification', model='distilbert-base-uncased-finetuned-sst-2-english')"
 # Use slim Python image
 FROM python:3.10-slim
 
