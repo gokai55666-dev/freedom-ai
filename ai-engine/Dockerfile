@@ -4,6 +4,9 @@ RUN pip install --no-cache-dir -r requirements.txt && apt-get purge -y --auto-re
 
 # Pre-download Hugging Face model to cache
 RUN python -c "from transformers import pipeline; pipeline('text-classification', model='distilbert-base-uncased-finetuned-sst-2-english')"
+
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s --retries=5 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:10001/health')"
 # Use slim Python image
 FROM python:3.10-slim
 
@@ -11,6 +14,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
+
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s --retries=5 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:10001/health')"
 
 RUN apt-get update && apt-get install -y --no-install-recommends gcc && rm -rf /var/lib/apt/lists/*
 
