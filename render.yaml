@@ -2,7 +2,7 @@ services:
   - type: web
     name: freedom-ai
     runtime: docker
-    rootDir: ai-engine/Dockerfile
+    rootDir: ai-engine
     envVars:
       - key: PORT
         value: 10001
