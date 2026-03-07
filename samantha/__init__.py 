@@ -1,0 +1,10 @@
+"""Samantha Ultimate AGI - Modular AI System"""
+
+__version__ = "1.0.0"
+__author__ = "Samantha AI Team"
+__license__ = "MIT"
+
+from .config import load_config
+from .core.system_check import run_diagnostics
+
+__all__ = ['load_config', 'run_diagnostics']
