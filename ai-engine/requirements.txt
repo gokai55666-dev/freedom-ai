@@ -1,8 +1,0 @@
-fastapi
-uvicorn[standard]
-torch==2.1.0+cpu
-transformers
-torch==2.1.0+cpu
-transformers
-fastapi
-uvicorn[standard]
